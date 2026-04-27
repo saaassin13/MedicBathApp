@@ -23,8 +23,4 @@ class AppColors {
   static const Color textPrimary = Color(0xFF1A1A1A);
   static const Color textSecondary = Color(0xFF666666);
   static const Color textHint = Color(0xFF999999);
-
-  // 图表色
-  static const Color chartBlue = Color(0xFF1976D2);
-  static const Color chartDarkBlue = Color(0xFF1565C0);
 }

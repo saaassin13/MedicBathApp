@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../constants/app_constants.dart';
 import 'app_colors.dart';
 
 /// 应用主题配置
@@ -11,7 +12,7 @@ ThemeData buildAppTheme() {
       color: AppColors.cardWhite,
       elevation: 2,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(AppConstants.cardBorderRadius),
       ),
     ),
     appBarTheme: const AppBarTheme(

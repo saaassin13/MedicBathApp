@@ -42,7 +42,7 @@ class DefaultMessageService implements MessageService {
       android: androidSettings,
       iOS: iosSettings,
     );
-    await _pushPlugin.initialize(initSettings);
+    await _pushPlugin.initialize(settings: initSettings);
   }
 
   @override
@@ -63,7 +63,7 @@ class DefaultMessageService implements MessageService {
       android: androidDetails,
       iOS: iosDetails,
     );
-    await _pushPlugin.show(0, title, body, details);
+    await _pushPlugin.show(id: 0, title: title, body: body, notificationDetails: details);
   }
 
   @override

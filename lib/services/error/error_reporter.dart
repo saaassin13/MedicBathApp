@@ -2,8 +2,14 @@ import 'package:flutter/material.dart';
 import 'error_logger.dart';
 
 /// 错误上报服务
+///
+/// 本地日志已实现，上报后端 API 预留接口
+/// 后续对接时实现 HttpReporter 类并替换本类中的调用
 class ErrorReporter {
   /// 上报错误到后端
+  ///
+  /// 当前实现：仅记录到本地日志
+  /// 后续实现：同时发送到后端错误收集 API
   static Future<void> report(FlutterErrorDetails details) async {
     // 记录到本地日志
     await ErrorLogger.log(
@@ -11,21 +17,14 @@ class ErrorReporter {
       stackTrace: details.stack?.toString(),
     );
 
-    // TODO: 发送到后端错误收集 API
-    // 示例代码（需要根据实际后端接口调整）：
-    // try {
-    //   await Dio().post('https://api.example.com/errors', data: {
-    //     'message': details.exceptionAsString(),
-    //     'stackTrace': details.stack?.toString(),
-    //     'deviceInfo': 'Flutter App',
-    //     'timestamp': DateTime.now().toIso8601String(),
-    //   });
-    // } catch (e) {
-    //   debugPrint('Failed to report error: $e');
-    // }
+    // 上报后端（预留接口，后续通过 HttpReporter 实现）
+    // _sendToBackend(...);
   }
 
   /// 上报普通异常
+  ///
+  /// 当前实现：仅记录到本地日志
+  /// 后续实现：同时发送到后端错误收集 API
   static Future<void> reportException(Exception exception, {
     StackTrace? stackTrace,
     String? page,
@@ -38,6 +37,7 @@ class ErrorReporter {
       userId: userId,
     );
 
-    // TODO: 发送到后端错误收集 API
+    // 上报后端（预留接口，后续通过 HttpReporter 实现）
+    // _sendExceptionToBackend(...);
   }
 }

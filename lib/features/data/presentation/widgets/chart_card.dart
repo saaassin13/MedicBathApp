@@ -1,6 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../domain/chart_colors.dart';
 
 /// 图表卡片组件 - 双轴复合图
 class ChartCard extends StatelessWidget {
@@ -147,7 +148,7 @@ class ChartCard extends StatelessWidget {
                 }
                 return LineTooltipItem(
                   '${spot.y.toInt()}头',
-                  const TextStyle(color: AppColors.chartDarkBlue, fontWeight: FontWeight.bold),
+                  const TextStyle(color: ChartColors.chartDarkBlue, fontWeight: FontWeight.bold),
                 );
               }).toList();
             },
@@ -218,12 +219,12 @@ class ChartCard extends StatelessWidget {
               FlSpot(i.toDouble() + 0.30, 0),
             ],
             isCurved: false,
-            color: AppColors.chartBlue,
+            color: ChartColors.chartBlue,
             barWidth: 0,
             dotData: const FlDotData(show: false),
             belowBarData: BarAreaData(
               show: true,
-              color: AppColors.chartBlue,
+              color: ChartColors.chartBlue,
               cutOffY: 0,
               applyCutOffY: true,
             ),

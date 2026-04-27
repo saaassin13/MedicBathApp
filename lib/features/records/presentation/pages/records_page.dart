@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../data/domain/chart_colors.dart';
 import '../../../../shared/providers/farm_selection_provider.dart';
 import '../providers/records_provider.dart';
 import '../../domain/entities.dart';
@@ -126,9 +127,9 @@ class _RecordItemCard extends StatelessWidget {
                 ),
                 Text(
                   item.formattedDuration,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 14,
-                    color: AppColors.chartBlue,
+                    color: ChartColors.chartBlue,
                   ),
                 ),
               ],

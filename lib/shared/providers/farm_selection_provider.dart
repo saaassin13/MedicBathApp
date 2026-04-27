@@ -1,4 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../features/auth/data/mock_auth_repository.dart';
+import '../../features/auth/domain/auth_repository.dart';
 import '../../features/auth/domain/farm.dart';
 import '../../services/storage/local_storage_service.dart';
 
@@ -25,7 +27,9 @@ class FarmSelectionState {
 
 /// 奶厅选择全局状态管理器
 class FarmSelectionNotifier extends StateNotifier<FarmSelectionState> {
-  FarmSelectionNotifier() : super(const FarmSelectionState()) {
+  final AuthRepository _authRepository;
+
+  FarmSelectionNotifier(this._authRepository) : super(const FarmSelectionState()) {
     _loadSavedFarm();
   }
 
@@ -33,10 +37,18 @@ class FarmSelectionNotifier extends StateNotifier<FarmSelectionState> {
   Future<void> _loadSavedFarm() async {
     final savedFarmId = LocalStorageService.getSelectedFarmId();
     if (savedFarmId != null) {
-      // 从 AuthRepository 获取奶厅列表，然后查找
-      // 这里需要结合 AuthRepository 来加载
-      state = state.copyWith(isLoading: false);
+      try {
+        final farms = await _authRepository.getFarms();
+        final savedFarm = farms.where((f) => f.id == savedFarmId).firstOrNull;
+        if (savedFarm != null) {
+          state = FarmSelectionState(selectedFarm: savedFarm, isLoading: false);
+          return;
+        }
+      } catch (_) {
+        // 加载失败，忽略
+      }
     }
+    state = state.copyWith(isLoading: false);
   }
 
   /// 选择奶厅
@@ -60,7 +72,10 @@ class FarmSelectionNotifier extends StateNotifier<FarmSelectionState> {
 /// 奶厅选择全局 Provider
 final farmSelectionProvider =
     StateNotifierProvider<FarmSelectionNotifier, FarmSelectionState>((ref) {
-  return FarmSelectionNotifier();
+  // 直接使用 MockAuthRepository，避免循环依赖
+  // 后续真实 API 对接时可通过参数传入
+  final repository = MockAuthRepository();
+  return FarmSelectionNotifier(repository);
 });
 
 /// 便捷访问：当前选中的奶厅
