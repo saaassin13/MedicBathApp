@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人中心</title>
+    <!-- 引入Tailwind CSS简化样式 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入Font Awesome图标 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* 自定义样式补充 */
+        body {
+            background-color: #f5f5f5;
+            font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .list-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .list-item:last-child {
+            border-bottom: none;
+        }
+        .nav-active {
+            color: #ff7800 !important;
+        }
+    </style>
+    <!-- 配置Tailwind自定义颜色 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        orange: {
+                            primary: '#ff7800', // 主橙色（匹配图片）
+                        },
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <!-- 页面容器 -->
+    <div class="h-screen flex flex-col overflow-hidden">
+        <!-- 顶部橙色头部区域 -->
+        <div class="bg-orange-primary text-white p-4 pt-10 pb-6">
+            <!-- 状态栏模拟（仅样式） -->
+            <div class="flex justify-between items-center mb-6">
+                <span class="text-sm">9:41</span>
+                <div class="flex items-center gap-1">
+                    <i class="fa-solid fa-signal text-xs"></i>
+                    <i class="fa-solid fa-wifi text-xs"></i>
+                    <i class="fa-solid fa-battery-full text-xs"></i>
+                </div>
+            </div>
+            <!-- 个人中心标题 -->
+            <h1 class="text-center text-xl font-bold mb-6">个人中心</h1>
+            <!-- 用户名 + 个人信息入口 -->
+            <div class="flex justify-between items-center">
+                <span class="text-lg font-medium">张三 - XX部门</span>
+                <div class="flex items-center gap-1 cursor-pointer">
+                    <span class="text-sm">个人信息</span>
+                    <i class="fa-solid fa-chevron-right text-xs"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- 中间内容区域（可滚动） -->
+        <div class="flex-1 overflow-y-auto p-4">
+            <!-- 第一组：维保计划/记录/故障日志 -->
+            <div class="bg-white rounded-lg mb-4 shadow-sm">
+                <div class="list-item cursor-pointer">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-calendar-check text-gray-500 text-sm"></i>
+                        <span>维保计划</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-gray-400 text-xs"></i>
+                </div>
+                <div class="list-item cursor-pointer">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-clock-rotate-left text-gray-500 text-sm"></i>
+                        <span>维保记录</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-gray-400 text-xs"></i>
+                </div>
+                <div class="list-item cursor-pointer">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-triangle-exclamation text-gray-500 text-sm"></i>
+                        <span>故障日志</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-gray-400 text-xs"></i>
+                </div>
+            </div>
+
+            <!-- 第二组：系统设置/检查更新/关于我们 -->
+            <div class="bg-white rounded-lg mb-4 shadow-sm">
+                <div class="list-item cursor-pointer">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-gear text-gray-500 text-sm"></i>
+                        <span>系统设置</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-gray-400 text-xs"></i>
+                </div>
+                <div class="list-item cursor-pointer">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-arrows-rotate text-gray-500 text-sm"></i>
+                        <span>检查更新</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-gray-400 text-xs"></i>
+                </div>
+                <div class="list-item cursor-pointer">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-circle-info text-gray-500 text-sm"></i>
+                        <span>关于我们</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-gray-400 text-xs"></i>
+                </div>
+            </div>
+
+            <!-- 退出登录按钮 -->
+            <button class="w-full bg-white text-orange-primary rounded-lg py-3.5 text-base font-medium shadow-sm cursor-pointer">
+                退出登录
+            </button>
+        </div>
+
+        <!-- 底部导航栏 -->
+        <div class="bg-white border-t border-gray-200 flex justify-around py-2 px-4">
+            <div class="flex flex-col items-center gap-1 cursor-pointer">
+                <i class="fa-solid fa-th-large text-gray-500 text-lg"></i>
+                <span class="text-xs text-gray-500">首页</span>
+            </div>
+            <div class="flex flex-col items-center gap-1 cursor-pointer">
+                <i class="fa-solid fa-chart-simple text-gray-500 text-lg"></i>
+                <span class="text-xs text-gray-500">数据</span>
+            </div>
+            <div class="flex flex-col items-center gap-1 cursor-pointer">
+                <i class="fa-solid fa-file-lines text-gray-500 text-lg"></i>
+                <span class="text-xs text-gray-500">记录</span>
+            </div>
+            <div class="flex flex-col items-center gap-1 cursor-pointer">
+                <i class="fa-solid fa-user text-orange-primary text-lg nav-active"></i>
+                <span class="text-xs nav-active">我的</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
